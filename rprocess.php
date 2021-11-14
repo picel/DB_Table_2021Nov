@@ -24,7 +24,7 @@ $passwd = $_POST['passwd'];
 if(!$writer){
 	echo("
 		<script>
-		window.alert('이름이 없습니다. 다시 입력하세요.')
+		window.alert('이름을 입력 해주세요.')
 		history.go(-1)
 		</script>
 	");
@@ -33,14 +33,12 @@ if(!$writer){
 
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 
-// 답변 글은 원본 글보다 깊이가 1 증가됨
 $result=mysqli_query($con, "select space from $board where id=$id");
 $space=mysqli_result($result, 0, "space");
 $space=$space+1;
 
-$wdate=date("Y-m-d"); // 단변 글을 쓴 날짜 저장
+$wdate=date("Y-m-d");
 
-// 답변글이 추가되면 글의 개수가 하나 증가하므로 글 번호를 정리
 $tmp = mysqli_query($con, "select id from $board");
 $total = mysqli_num_rows($tmp);
 
@@ -49,7 +47,6 @@ while($total >= $id):
 	$total--;
 endwhile;
 
-// 원래 글 번호 위치에 답변 글을 삽입함
 mysqli_query($con, "insert into   $board(id, writer, email, passwd, topic, content, hit, wdate, space) values ($id, '$writer', '$email', '$passwd', '$topic','$content', 0, '$wdate',   $space)");
 
 mysqli_close($con);

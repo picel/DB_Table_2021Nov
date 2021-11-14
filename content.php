@@ -18,20 +18,18 @@ $board = $_GET['board'];
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 $result=mysqli_query($con, "select * from $board where id=$id");
 
-// 각 필드에 해당하는 데이터를 뽑아 내는 과정
 $id=mysqli_result($result,0,"id");
 $writer=mysqli_result($result,0,"writer");
 $topic=mysqli_result($result,0,"topic");
 $hit=mysqli_result($result,0,"hit");
 
-$hit = $hit +1;   //조회수를 하나 증가
+$hit = $hit +1;
 mysqli_query($con, "update $board set hit=$hit where id=$id");
 
 $wdate=mysqli_result($result,0,"wdate");
 $email=mysqli_result($result,0,"email");
 $content=mysqli_result($result,0,"content");
 
-// 테이블로부터 읽은 내용을 화면에 디스플레이
 echo ("<style type=\"text/css\">
 	.outerDiv {
 		width: 1100px;

@@ -155,4 +155,5 @@ else
     		</div></div>
 		</div></div></div></body>");
 }
-mysqli_close($con); ?>
+mysqli_close($con);
+?>

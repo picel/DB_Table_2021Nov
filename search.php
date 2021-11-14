@@ -116,7 +116,7 @@ if (!$total){
 
 		if   ($space>0) {
 			for ($i=0 ;   $i<=$space ; $i++)
-			$t=$t .  "&nbsp;";	// $space > 0 인 경우 제목 앞에 공백 추가
+			$t=$t .  "&nbsp;";
 		}
 
 		echo("

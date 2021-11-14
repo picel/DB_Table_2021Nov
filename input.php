@@ -82,7 +82,7 @@ echo("
 		</div>
 		</form>
 	</div>
-</div></body>
+</div>
+</body>
 ");
-
 ?>

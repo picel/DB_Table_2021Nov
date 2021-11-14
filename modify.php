@@ -19,7 +19,6 @@ $con = mysqli_connect("localhost","root","kyle0908", "class");
 
 $result=mysqli_query($con, "select *   from $board where id=$id");
 
-// 수정하고자 하는 원본 게시물에서 수정 가능한 항목을 추출함
 $writer=mysqli_result($result,0,"writer");
 $topic=mysqli_result($result,0,"topic");
 $content=mysqli_result($result,0,"content");

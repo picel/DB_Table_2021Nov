@@ -17,18 +17,15 @@ $board = $_GET['board'];
 $id = $_GET['id'];
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 
-// 해당 게시물의 모든 내용을 읽어들임
 $result=mysqli_query($con, "select * from $board where id=$id");
 
 $topic=mysqli_result($result,0,"topic");
 $content=mysqli_result($result,0,"content");
 
-$topic="[Re]" .  $topic;  // 원본 글 제목 앞에   "[Re]" 글자를 추가
+$topic="[Re]" .  $topic;
 
-// 원본 글 본문의 앞뒤에 구분자 표시
 $pre_content=   "\n\n\n--------------< 원본글 >-------------\n" . $content . "\n";
 
-// 답변 글 입력 폼
 echo("
 <style type=\"text/css\">
 	.outerDiv {
