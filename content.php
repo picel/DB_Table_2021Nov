@@ -16,7 +16,10 @@ function mysqli_result($res,$row=0,$col=0)
 $id = $_GET['id'];
 $board = $_GET['board'];
 $con = mysqli_connect("localhost","root","kyle0908", "class");
+$con2 = mysqli_connect("localhost","root","kyle0908", "reply");
 $result=mysqli_query($con, "select * from $board where id=$id");
+$result2 = mysqli_query($con2, "select * from $board where id=$id");
+$total = mysqli_num_rows($result2);
 
 $id=mysqli_result($result,0,"id");
 $writer=mysqli_result($result,0,"writer");
@@ -116,9 +119,37 @@ echo ("
 		<div style='margin:20px; float:right;'><a href=reply.php?board=$board&id=$id>[답변]</a>
 		<a href=show.php?board=$board>[목록]</a></div>
 		</div>
-		<div class='container'></div>
+		");
+
+if ($total!=0){
+	echo("<div class='container' style='padding-top:0px;'>");
+	$counter = 0;
+	while($counter<$total):
+		$writer=mysqli_result($result2,$counter,"writer");
+		$email=mysqli_result($result2,$counter,"email");
+		$content=mysqli_result($result2,$counter,"content");
+		$wdate=mysqli_result($result2,$counter,"wdate");
+		$cid=mysqli_result($result2,$counter,"id");
+		echo("
+		<div style='padding-top:40px;'>
+			<div style='margin-bottom:10px;'>
+				<div style='display:inline-block;'><span style='font:bold; font-size:20px;'>$writer</span></div>
+				<div style='display:inline-block; float:right;'>$wdate</div>
+			</div>
+			<div>
+				<div style='width:650px; display:inline-block;'>$content</div>
+				<div style='float:right; display:inline-block;'><a href=commentrm.php?board=$board&id=$cid text-align=right>[삭제]</a></div>
+			</div>
+		</div>
+		");
+		$counter++;
+	endwhile;
+	echo("</div>");
+}
+
+echo("
 		<div class='container'>
-		<form method=post action=rprocess.php?board=$board&id=$id>
+		<form method=post action=comment.php?board=$board&id=$id>
 		<div style='padding:10px;'>
 			<div style='width:50px; display:inline-block;'>이름</div>
 			<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
