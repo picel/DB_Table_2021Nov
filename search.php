@@ -73,6 +73,7 @@ $board = $_GET['board'];
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 $result=mysqli_query($con, "select * from $board where $field like '%$key%' order by id desc");
 $total = mysqli_num_rows($result);
+$con2 = mysqli_connect("localhost","root","kyle0908", "reply");
 
 echo("
 <div class='outerDiv'>
@@ -122,11 +123,15 @@ if (!$total){
 			for ($i=0 ;   $i<=$space ; $i++)
 			$t=$t .  "&nbsp;";
 		}
-
+		$result2 = mysqli_query($con2, "select * from $board where id=$id");
+		$total2 = mysqli_num_rows($result2);
 		echo("
 		<div style='margin-top:5px; padding:10px; border-bottom:1px solid lightgray;'>
 			<div class='inlineDiv' style='width:70px; padding-left:10px;'>$id</div>
-			<div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id>$topic</a></div>
+			<div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id>$topic");
+      if ($total2 != 0) echo(" [$total2]");
+      echo("
+      </a></div>
 			<div class='inlineDiv' style='width:100px;'>$writer</div>
 			<div class='inlineDiv' style='width:150px;'>$wdate</div>
 			<div class='inlineDiv' style='width:40px; padding-left:10px;'>$hit</div>
