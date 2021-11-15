@@ -78,9 +78,13 @@ echo("
 <div class='outerDiv'>
  <div class='leftDiv' style='margin-top: 15px;'>
  <div class='list' style='text-align:center;font-size:30px;height:130px; display:table-cell;'>어서오슈</div>
- <div class='list'><a href=show.php?board=testboard>test</a></div>
- <div class='list'><a href=show.php?board=qna>qna</a></div>
- <div class='list'><a href=show.php?board=alpha>alpha</a></div>
+ ");
+ $showtables= mysqli_query($con, "SHOW TABLES FROM class");
+	while($table = mysqli_fetch_array($showtables)) {
+	 echo ("<div class='list'><a href=show.php?board=$table[0]>$table[0]</a></div>");
+	}
+
+echo ("
  </div>
  <div class='rightDiv'>
  <div style='float:right;'>검색어:$key , 찾은 개수:$total 개</div>
