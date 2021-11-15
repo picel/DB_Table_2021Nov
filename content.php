@@ -41,14 +41,18 @@ echo ("<style type=\"text/css\">
 		float: left;
 	}
 	.rightDiv {
-		width: 740px;
-		height: 600px;
+		width: 820px;
 		float: right;
+    margin: 15px;
+	}
+	.container {
+		width: 740px;
     background-color: #F2F2F2;
     border-radius: 20px / 20px;
     padding: 40px;
-    margin: 15px;
+		margin-bottom:15px;
     color: #011640;
+		display: block;
 	}
 	.inlineDiv {
 		height: 30px;
@@ -85,6 +89,7 @@ echo ("<style type=\"text/css\">
 	<div class='list'><a href=show.php?board=alpha>alpha</a></div>
 	</div>
 	<div class='rightDiv'>
+	<div class='container' style='height:600px;'>
 		<div style='border-bottom:3px solid #011640;'>
 			<h1>$board</h1>
 		</div>
@@ -106,6 +111,28 @@ echo ("<style type=\"text/css\">
 		</div>
 		<div style='margin:20px; float:right;'><a href=reply.php?board=$board&id=$id>[답변]</a>
 		<a href=show.php?board=$board>[목록]</a></div>
+		</div>
+		<div class='container'></div>
+		<div class='container'>
+		<form method=post action=rprocess.php?board=$board&id=$id>
+		<div style='padding:10px;'>
+			<div style='width:50px; display:inline-block;'>이름</div>
+			<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
+			<div style='width: 45px; display:inline-block;'>Email </div>
+			<div style='display:inline-block;'><input type=text name=email size=44></div>
+		</div>
+		<div style='padding:10px;'><textarea name=content rows=8 cols=100></textarea></div>
+		<div style='padding:10px;'>
+			<div style='width:50px; display:inline-block;'>암호 </div>
+			<div style='display:inline-block;'><input type=password name=passwd size=15></div>
+		</div>
+		<div>
+			<div style='width:120px; display:inline-block;'></div>
+			<div style='text-align:center; width:500px; display:inline-block;'><input type=submit value=등록하기></div>
+			<div style='text-align:right; width:120px; display:inline;'><input type=reset value=지우기></div>
+		</div>
+		</form>
+		</div>
 	</div>
 </div></body>");
 ?>
