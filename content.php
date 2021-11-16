@@ -140,7 +140,7 @@ if ($total!=0){
 		$email=mysqli_result($result2,$counter,"email");
 		$content=mysqli_result($result2,$counter,"content");
 		$wdate=mysqli_result($result2,$counter,"wdate");
-		$cid=mysqli_result($result2,$counter,"id");
+		$num=mysqli_result($result2,$counter,"num");
 		echo("
 		<div style='padding-top:40px;'>
 			<div style='margin-bottom:10px;'>
@@ -149,7 +149,7 @@ if ($total!=0){
 			</div>
 			<div>
 				<div style='width:650px; display:inline-block;'>$content</div>
-				<div style='float:right; display:inline-block;'><a href=commentrm.php?board=$board&id=$cid text-align=right class='fas fa-trash'> 삭제</a></div>
+				<div style='float:right; display:inline-block;'><a href=cmtpass.php?board=$board&num=$num&id=$id text-align=right class='fas fa-trash'> 삭제</a></div>
 			</div>
 		</div>
 		");
