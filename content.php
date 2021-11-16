@@ -87,7 +87,14 @@ echo ("<style type=\"text/css\">
     font-weight: normal;
     font-style: normal;
 	}
-</style><body bgcolor='#668C4A'>
+	button {
+		border: 0px;
+		background-color: #FFFFFF;
+		font-size:15px;
+	}
+</style>
+<script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
+<body bgcolor='#668C4A'>
 <div class='outerDiv'>
 	<div class='leftDiv' style='margin-top: 15px;'>
 	<div class='list' style='text-align:center;font-size:30px;height:130px; display:table-cell;'>어서오슈</div>
@@ -109,8 +116,8 @@ echo ("
 		    <h3>$topic</h3>
 		  </div>
 		  <div style='display:inline-block; float:right;'>
-		    <a href=pass.php?board=$board&id=$id&mode=0>[수정]</a>
-		    <a href=pass.php?board=$board&id=$id&mode=1>[삭제]</a>
+		    <div style='margin:10px; float:right;'><a href=pass.php?board=$board&id=$id&mode=0 class='fas fa-edit'> 수정</a></div>
+		    <div style='margin:10px; float:right;'><a href=pass.php?board=$board&id=$id&mode=1 class='fas fa-trash'> 삭제</a></div>
 		  </div>
 		</div>
 		<div style='margin-top:5px; padding:25px; height:300px;  border-bottom:1px solid #011640;'>$content</div>
@@ -120,8 +127,8 @@ echo ("
 		  <div class='inlineDiv' style='width:150px;'>날짜 : $wdate</div>
 		  <div class='inlineDiv' style='width:100px;'>조회 : $hit</div>
 		</div>
-		<div style='margin:20px; float:right;'><a href=reply.php?board=$board&id=$id>[답변]</a>
-		<a href=show.php?board=$board>[목록]</a></div>
+		<div style='margin:10px; float:right;'><a href=reply.php?board=$board&id=$id class='fas fa-reply'> 답변</a></div>
+		<div style='margin:10px; float:right;'><a href=show.php?board=$board class='fas fa-list'> 목록</a></div>
 		</div>
 		");
 
@@ -142,7 +149,7 @@ if ($total!=0){
 			</div>
 			<div>
 				<div style='width:650px; display:inline-block;'>$content</div>
-				<div style='float:right; display:inline-block;'><a href=commentrm.php?board=$board&id=$cid text-align=right>[삭제]</a></div>
+				<div style='float:right; display:inline-block;'><a href=commentrm.php?board=$board&id=$cid text-align=right class='fas fa-trash'> 삭제</a></div>
 			</div>
 		</div>
 		");
@@ -167,8 +174,8 @@ echo("
 		</div>
 		<div>
 			<div style='width:120px; display:inline-block;'></div>
-			<div style='text-align:center; width:500px; display:inline-block;'><input type=submit value=등록하기></div>
-			<div style='text-align:right; width:120px; display:inline;'><input type=reset value=지우기></div>
+			<div style='text-align:center; width:500px; display:inline-block;'><button class='fas fa-pen' type='submit'> 입력</button></div>
+			<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
 		</div>
 		</form>
 		</div>

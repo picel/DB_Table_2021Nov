@@ -66,7 +66,14 @@ html, body {
   font-weight: normal;
   font-style: normal;
 }
-</style><body bgcolor='#668C4A'>");
+button {
+  border: 0px;
+  background-color: #FFFFFF;
+  font-size:15px;
+}
+</style>
+<script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
+<body bgcolor='#668C4A'>");
 $board = $_GET['board'];
 $con = mysqli_connect("localhost", "root", "kyle0908", "class");
 $result = mysqli_query($con, "select * from $board order by id desc");
@@ -166,16 +173,15 @@ else
       <div style='width:120px; display:inline-block;'></div>
       <div style='text-align:center; width:500px; display:inline-block;'>
   			<form method=post action=search.php?board=$board>
-  				<select name=field>
+  				<select name=field style='height:22px;'>
   					<option value=writer>글쓴이</option>
   					<option value=topic>제목</option>
   					<option value=content>내용</option>
   				</select>
-  				검색어
   				<input type=text name=key size=13>
-  				<input type=submit value=찾기>
+  				<button type=submit class='fas fa-search'> 검색</button>
   			</form></div><div style='text-align:right; width:120px; display:inline;'>
-    			[<a href=input.php?board=$board text-align=right>쓰기</a>]
+    			<a href=input.php?board=$board text-align=right class='fas fa-pen'> 글쓰기</a>
     		</div></div>
 		</div></div></div></div></body>");
 }

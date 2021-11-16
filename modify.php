@@ -77,8 +77,14 @@ html, body {
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
-}
-</style><body bgcolor='#668C4A'>
+}button {
+		border: 0px;
+		background-color: #FFFFFF;
+		font-size:15px;
+	}
+</style>
+<script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
+<body bgcolor='#668C4A'>
 <div class='outerDiv'>
 <div class='leftDiv' style='margin-top: 15px;'>
 <div class='list' style='text-align:center;font-size:30px;height:130px; display:table-cell;'>어서오슈</div>
@@ -113,8 +119,8 @@ echo ("
 		</div>
 		<div>
 			<div style='width:120px; display:inline-block;'></div>
-			<div style='text-align:center; width:500px; display:inline-block;'><input type=submit value=등록하기></div>
-			<div style='text-align:right; width:120px; display:inline;'><input type=reset value=지우기></div>
+			<div style='text-align:center; width:500px; display:inline-block;'><button class='fas fa-marker' type='submit'> 수정하기</button></div>
+			<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
 		</div>
 		</form>
 	</div></div>
