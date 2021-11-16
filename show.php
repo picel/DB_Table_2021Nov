@@ -35,11 +35,11 @@ echo ("<style type=\"text/css\">
   display: block;
 }
 .inlineDiv {
-  height: 30px;
+  height: 20px;
   display: inline-block;
 }
 .list {
-  height: 30px;
+  height: 20px;
   width: 230px;
   text-align: center;
   font-size: 20px;
