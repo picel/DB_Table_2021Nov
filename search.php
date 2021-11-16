@@ -36,19 +36,19 @@ echo ("<style type=\"text/css\">
 	display: block;
 }
 .inlineDiv {
-	height: 30px;
-	display: inline-block;
+  height: 20px;
+  display: inline-block;
 }
 .list {
-	height: 30px;
-	width: 230px;
-	text-align: center;
-	font-size: 20px;
-	background-color: #FFFFFF;
-	padding: 10px;
-	margin-top: 15px;
-	display: block;
-	vertical-align: middle;
+  height: 20px;
+  width: 230px;
+  text-align: center;
+  font-size: 20px;
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin-top: 15px;
+  display: block;
+  vertical-align: middle;
 }
 a {
 	text-decoration-line: none;
