@@ -3,55 +3,63 @@ $board = $_GET['board'];
 $con = mysqli_connect("localhost", "root", "kyle0908", "class");
 echo("
 <style type=\"text/css\">
-	.outerDiv {
-		width: 1100px;
-		height: 600px;
-	}
-	.leftDiv {
-		width: 250px;
-		height: 600px;
-		float: left;
-	}
-	.rightDiv {
-		width: 740px;
-		height: 600px;
-		float: right;
-		background-color: #F2F2F2;
-		border-radius: 20px / 20px;
-		padding: 40px;
-		margin: 15px;
-		color: #011640;
-	}
-	.inlineDiv {
-		height: 30px;
-		display: inline-block;
-	}
-	.list {
-		height: 30px;
-		width: 230px;
-		text-align: center;
-		font-size: 20px;
-		border-radius: 0px 20px 20px 0px / 0px 20px 20px 0px;
-		background-color: #F2F2F2;
-		padding: 10px;
-		margin-top: 10px;
-		display: block;
-		vertical-align: middle;
-	}
-	a {
-		text-decoration-line: none;
-		color: inherit;
-	}
-	html, body {
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-	}
-</style><body bgcolor='#B0B7BF'>
+.outerDiv {
+	width: 1100px;
+	height: 600px;
+	margin: 0 auto;
+}
+.leftDiv {
+	width: 250px;
+	display: inline-block;
+	float: left;
+}
+.rightDiv {
+	margin: 15px;
+	display: inline-block;
+}
+.container {
+	width: 740px;
+	background-color: #FFFFFF;
+	padding: 40px;
+	margin-bottom:15px;
+	display: block;
+}
+.inlineDiv {
+	height: 30px;
+	display: inline-block;
+}
+.list {
+	height: 30px;
+	width: 230px;
+	text-align: center;
+	font-size: 20px;
+	background-color: #FFFFFF;
+	padding: 10px;
+	margin-top: 15px;
+	display: block;
+	vertical-align: middle;
+}
+a {
+	text-decoration-line: none;
+	color: inherit;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'BMJUA';
+}
+@font-face {
+	font-family: 'BMJUA';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+</style><body bgcolor='#668C4A'>
 <div class='outerDiv'>
-	<div class='leftDiv' style='margin-top: 15px;'>
-	<div class='list' style='text-align:center;font-size:30px;height:130px; display:table-cell;'>어서오슈</div>
+<div class='leftDiv' style='margin-top: 15px;'>
+<div class='list' style='text-align:center;font-size:30px;height:130px; display:table-cell;'>어서오슈</div>
 	");
   $showtables= mysqli_query($con, "SHOW TABLES FROM class");
    while($table = mysqli_fetch_array($showtables)) {
@@ -61,6 +69,7 @@ echo("
 echo ("
 	</div>
 	<div class='rightDiv'>
+	<div class='container'>
 		<div style='border-bottom:3px solid #011640;'>
 			<h1>$board</h1>
 		</div>
@@ -86,6 +95,7 @@ echo ("
 			<div style='text-align:right; width:120px; display:inline;'><input type=reset value=지우기></div>
 		</div>
 		</form>
+	</div>
 	</div>
 </div>
 </body>

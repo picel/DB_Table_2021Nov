@@ -37,24 +37,22 @@ echo ("<style type=\"text/css\">
 	.outerDiv {
 		width: 1100px;
 		height: 600px;
+		margin: 0 auto;
 	}
 	.leftDiv {
 		width: 250px;
-		height: 600px;
+		display: inline-block;
 		float: left;
 	}
 	.rightDiv {
-		width: 820px;
-		float: right;
     margin: 15px;
+		display: inline-block;
 	}
 	.container {
 		width: 740px;
-    background-color: #F2F2F2;
-    border-radius: 20px / 20px;
+    background-color: #FFFFFF;
     padding: 40px;
 		margin-bottom:15px;
-    color: #011640;
 		display: block;
 	}
 	.inlineDiv {
@@ -66,10 +64,9 @@ echo ("<style type=\"text/css\">
 		width: 230px;
 		text-align: center;
 		font-size: 20px;
-		border-radius: 0px 20px 20px 0px / 0px 20px 20px 0px;
-		background-color: #F2F2F2;
+		background-color: #FFFFFF;
 		padding: 10px;
-		margin-top: 10px;
+		margin-top: 15px;
 		display: block;
 		vertical-align: middle;
 	}
@@ -82,8 +79,15 @@ echo ("<style type=\"text/css\">
     height: 100%;
     margin: 0;
     padding: 0;
+		font-family: 'BMJUA';
   }
-</style><body bgcolor='#B0B7BF'>
+	@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+</style><body bgcolor='#668C4A'>
 <div class='outerDiv'>
 	<div class='leftDiv' style='margin-top: 15px;'>
 	<div class='list' style='text-align:center;font-size:30px;height:130px; display:table-cell;'>어서오슈</div>
