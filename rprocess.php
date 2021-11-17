@@ -20,6 +20,7 @@ $email = $_POST['email'];
 $topic = $_POST['topic'];
 $content = $_POST['content'];
 $passwd = $_POST['passwd'];
+$userfile = $_FILES['userfile'];
 
 if(!$writer){
 	echo("
@@ -32,6 +33,7 @@ if(!$writer){
 }
 
 $con = mysqli_connect("localhost","root","kyle0908", "class");
+$con2 = mysqli_connect("localhost","root","kyle0908", "reply");
 
 $result=mysqli_query($con, "select space from $board where id=$id");
 $space=mysqli_result($result, 0, "space");
@@ -44,10 +46,19 @@ $total = mysqli_num_rows($tmp);
 
 while($total >= $id):
 	mysqli_query($con, "update $board set id=id+1 where id=$total");
+	mysqli_query($con2, "update $board set id=id+1 where id=$total");
 	$total--;
 endwhile;
 
-mysqli_query($con, "insert into   $board(id, writer, email, passwd, topic, content, hit, wdate, space) values ($id, '$writer', '$email', '$passwd', '$topic','$content', 0, '$wdate',   $space)");
+if (isset($_FILES['userfile'])) {
+   $savedir = './pds';
+	 $userfile_name = $userfile['name'];
+	 $userfile_size = $userfile['size'];
+   copy($userfile['tmp_name'], "$savedir/$userfile_name");
+   unlink($userfile['tmp_name']);
+}
+
+mysqli_query($con, "insert into   $board(id, writer, email, passwd, topic, content, hit, wdate, space, filename, filesize) values ($id, '$writer', '$email', '$passwd', '$topic','$content', 0, '$wdate',   $space, '$userfile_name', '$userfile_size')");
 
 mysqli_close($con);
 
