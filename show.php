@@ -130,6 +130,7 @@ else
         $hit = mysqli_result($result, $newcounter, "hit");
         $wdate = mysqli_result($result, $newcounter, "wdate");
         $space = mysqli_result($result, $newcounter, "space");
+        $filename = mysqli_result($result, $newcounter, "filename");
         $t = "";
         if ($space > 0)
         {
@@ -142,6 +143,7 @@ else
 			<div class='inlineDiv' style='width:70px; padding-left:10px;'>$id</div>
 			<div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id>$topic");
       if ($total2 != 0) echo(" [$total2]");
+      if ($filename != null) echo(" <i class='fas fa-file'></i>");
       echo("
       </a></div>
 			<div class='inlineDiv' style='width:100px;'>$writer</div>

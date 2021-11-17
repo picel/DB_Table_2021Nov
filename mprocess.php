@@ -18,8 +18,12 @@ $email = $_POST['email'];
 $topic = $_POST['topic'];
 $content = $_POST['content'];
 $passwd = $_POST['passwd'];
+$userfile = $_FILES['userfile'];
 $board = $_GET['board'];
 $id = $_GET['id'];
+
+if ($userfile) $userfile = $_FILES['userfile'];
+
 if (!$writer){
 	echo("
 		<script>
@@ -56,9 +60,22 @@ $result = mysqli_query($con, "select * from $board where id=$id");
 $space = mysqli_result($result, 0, "space");
 $hit = mysqli_result($result, 0, "hit");
 
+if ($userfile['name'] != null) {
+   $savedir = './pds';
+	 $userfile_name = $userfile['name'];
+	 $userfile_size = $userfile['size'];
+   copy($userfile['tmp_name'], "$savedir/$userfile_name");
+   unlink($userfile['tmp_name']);
+}
+else{
+	$userfile_name = null;
+	$userfile_size = null;
+}
+
+
 $wdate = date("Y-m-d");
 
-mysqli_query($con, "update $board set  writer='$writer', email='$email', passwd='$passwd', topic='$topic', content='$content', hit=$hit, wdate='$wdate', space=$space where   id=$id");
+mysqli_query($con, "update $board set  writer='$writer', email='$email', passwd='$passwd', topic='$topic', content='$content', hit=$hit, wdate='$wdate', space=$space, filename='$userfile_name', filesize='$userfile_size' where id=$id");
 
 echo("<meta http-equiv='Refresh' content='0; url=show.php?board=$board'>");
 

@@ -60,6 +60,16 @@ html, body {
 	background-color: #FFFFFF;
 	font-size:15px;
 }
+input[type='file'] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
 </style>
 <script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
 <body bgcolor='#668C4A'>
@@ -79,7 +89,7 @@ echo ("
 		<div style='border-bottom:3px solid #011640;'>
 			<h1>$board</h1>
 		</div>
-		<form method=post action=process.php?board=$board>
+		<form method=post action=process.php?board=$board  enctype='multipart/form-data'>
 		<div style='padding:10px;'>
 			<div style='width:50px; display:inline-block;'>이름</div>
 			<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
@@ -91,9 +101,13 @@ echo ("
 			<div style='width:120px; display:inline-block;'><input type=text name=topic size=91></div>
 		</div>
 		<div style='padding:10px;'><textarea name=content rows=20 cols=102></textarea></div>
-		<div style='padding:10px;'>
+		<div style='padding:10px; margin-bottom:20px;'>
 			<div style='width:50px; display:inline-block;'>암호 </div>
 			<div style='display:inline-block;'><input type=password name=passwd size=15></div>
+			<div style='margin-left:430px; display:inline-block;'>
+				<label for='ex_file' class='fas fa-file'> 업로드</label>
+				<input type=file id='ex_file' name='userfile' size=45 maxlength=80>
+			</div>
 		</div>
 		<div>
 			<div style='width:120px; display:inline-block;'></div>

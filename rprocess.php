@@ -34,7 +34,6 @@ if(!$writer){
 
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 $con2 = mysqli_connect("localhost","root","kyle0908", "reply");
-
 $result=mysqli_query($con, "select space from $board where id=$id");
 $space=mysqli_result($result, 0, "space");
 $space=$space+1;
@@ -50,15 +49,19 @@ while($total >= $id):
 	$total--;
 endwhile;
 
-if (isset($_FILES['userfile'])) {
+if ($userfile['name'] != null) {
    $savedir = './pds';
 	 $userfile_name = $userfile['name'];
 	 $userfile_size = $userfile['size'];
    copy($userfile['tmp_name'], "$savedir/$userfile_name");
    unlink($userfile['tmp_name']);
 }
+else{
+	$userfile_name = null;
+	$userfile_size = null;
+}
 
-mysqli_query($con, "insert into   $board(id, writer, email, passwd, topic, content, hit, wdate, space, filename, filesize) values ($id, '$writer', '$email', '$passwd', '$topic','$content', 0, '$wdate',   $space, '$userfile_name', '$userfile_size')");
+mysqli_query($con, "insert into $board(id, writer, email, passwd, topic, content, hit, wdate, space, filename, filesize) values ($id, '$writer', '$email', '$passwd', '$topic','$content', 0, '$wdate', $space, '$userfile_name', '$userfile_size')");
 
 mysqli_close($con);
 
