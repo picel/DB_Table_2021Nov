@@ -25,6 +25,15 @@ $id=mysqli_result($result,0,"id");
 $writer=mysqli_result($result,0,"writer");
 $topic=mysqli_result($result,0,"topic");
 $hit=mysqli_result($result,0,"hit");
+$filename=mysqli_result($result,0,"filename");
+$filesize=mysqli_result($result,0,"filesize");
+
+if ($filesize > 1000) {
+	$kb_filesize =   (int)($filesize / 1000);
+	$disp_size = $kb_filesize . ' KBytes';
+} else {
+	$disp_size = $filesize . ' Bytes';
+}
 
 $hit = $hit +1;
 mysqli_query($con, "update $board set hit=$hit where id=$id");
@@ -107,7 +116,7 @@ echo ("<style type=\"text/css\">
 echo ("
 	</div>
 	<div class='rightDiv'>
-	<div class='container' style='height:600px;'>
+	<div class='container'>
 		<div style='border-bottom:3px solid #011640;'>
 			<h1>$board</h1>
 		</div>
@@ -120,8 +129,15 @@ echo ("
 		    <div style='margin:10px; float:right;'><a href=pass.php?board=$board&id=$id&mode=1 class='fas fa-trash'> 삭제</a></div>
 		  </div>
 		</div>
-		<div style='margin-top:5px; padding:25px; height:300px;  border-bottom:1px solid #011640;'>$content</div>
-		<div style='margin-top:10px; padding:10px; border-bottom:1px solid #011640;'>
+		<div style='margin-top:5px; margin-bottom:20px; padding:25px;'><pre>$content</pre></div>
+		");
+
+if ($filename != null){
+	echo("<div style='padding:25px;'>첨부파일 : <a href=./pds/$filename class='fas fa-file'> FILE</a> [$disp_size]</div>");
+}
+
+echo ("
+		<div style='padding:10px; border-bottom:1px solid #011640; border-top:1px solid #011640;'>
 			<div class='inlineDiv' style='width:80px;'>번호 : $id</div>
 		  <div class='inlineDiv' style='width:200px;'>글쓴이 : <a href=mailto:$email>$writer</a></div>
 		  <div class='inlineDiv' style='width:150px;'>날짜 : $wdate</div>
