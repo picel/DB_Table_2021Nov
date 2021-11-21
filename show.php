@@ -141,7 +141,7 @@ else
         echo ("
 		<div style='margin-top:5px; padding:10px; border-bottom:1px solid lightgray;'>
 			<div class='inlineDiv' style='width:70px; padding-left:10px;'>$id</div>
-			<div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id>$topic");
+			<div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id&cpage=$cpage>$topic");
       if ($total2 != 0) echo(" [$total2]");
       if ($filename != null) echo(" <i class='fas fa-file'></i>");
       echo("

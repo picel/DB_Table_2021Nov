@@ -176,24 +176,89 @@ if ($total!=0){
 
 echo("
 		<div class='container'>
-		<form method=post action=comment.php?board=$board&id=$id>
-		<div style='padding:10px;'>
-			<div style='width:50px; display:inline-block;'>이름</div>
-			<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
-			<div style='width: 45px; display:inline-block;'>Email </div>
-			<div style='display:inline-block;'><input type=text name=email size=44></div>
+			<form method=post action=comment.php?board=$board&id=$id>
+				<div style='padding:10px;'>
+					<div style='width:50px; display:inline-block;'>이름</div>
+					<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
+					<div style='width: 45px; display:inline-block;'>Email </div>
+					<div style='display:inline-block;'><input type=text name=email size=44></div>
+				</div>
+				<div style='padding:10px;'><textarea name=content rows=8 cols=100></textarea></div>
+				<div style='padding:10px;'>
+					<div style='width:50px; display:inline-block;'>암호 </div>
+					<div style='display:inline-block;'><input type=password name=passwd size=15></div>
+				</div>
+				<div>
+					<div style='width:120px; display:inline-block;'></div>
+					<div style='text-align:center; width:500px; display:inline-block;'><button class='fas fa-pen' type='submit'> 입력</button></div>
+					<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
+				</div>
+			</form>
 		</div>
-		<div style='padding:10px;'><textarea name=content rows=8 cols=100></textarea></div>
-		<div style='padding:10px;'>
-			<div style='width:50px; display:inline-block;'>암호 </div>
-			<div style='display:inline-block;'><input type=password name=passwd size=15></div>
-		</div>
-		<div>
-			<div style='width:120px; display:inline-block;'></div>
-			<div style='text-align:center; width:500px; display:inline-block;'><button class='fas fa-pen' type='submit'> 입력</button></div>
-			<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
-		</div>
-		</form>
+		<div class='container'>
+		<div style='border-top:3px solid black; border-bottom:3px solid black;'>
+");
+$result = mysqli_query($con, "select * from $board order by id desc");
+$total = mysqli_num_rows($result);
+$cpage = $_GET['cpage'];
+$pagesize = 5;
+$totalpage = (int)($total / $pagesize);
+if (($total % $pagesize) != 0) $totalpage = $totalpage + 1;
+$counter = 0;
+while ($counter < $pagesize):
+    $newcounter = ($cpage - 1) * $pagesize + $counter;
+    if ($newcounter == $total) break;
+    $id2 = mysqli_result($result, $newcounter, "id");
+    $writer = mysqli_result($result, $newcounter, "writer");
+    $topic = mysqli_result($result, $newcounter, "topic");
+    $hit = mysqli_result($result, $newcounter, "hit");
+    $wdate = mysqli_result($result, $newcounter, "wdate");
+    $space = mysqli_result($result, $newcounter, "space");
+    $filename = mysqli_result($result, $newcounter, "filename");
+    $t = "";
+    if ($space > 0)
+    {
+        for ($i = 0;$i <= $space;$i++) $t = $t . "&nbsp;";
+    }
+    $result2 = mysqli_query($con2, "select * from $board where id=$id2");
+    $total2 = mysqli_num_rows($result2);
+		if ($id2 == $id) echo ("<div style='padding:10px; border-bottom:1px solid lightgray; background-color:#E4F7BA'>");
+		else echo ("<div style='margin-top:5px; padding:10px; border-bottom:1px solid lightgray;'>");
+    echo ("
+	  <div class='inlineDiv' style='width:70px; padding-left:10px;'>$id2</div>
+	  <div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id2&cpage=$cpage>$topic");
+	  if ($total2 != 0) echo(" [$total2]");
+	  if ($filename != null) echo(" <i class='fas fa-file'></i>");
+	  echo("
+	  </a></div>
+	  <div class='inlineDiv' style='width:100px;'>$writer</div>
+	  <div class='inlineDiv' style='width:150px;'>$wdate</div>
+	  <div class='inlineDiv' style='width:40px; padding-left:10px;'>$hit</div>
+	</div>
+	");
+	    $counter = $counter + 1;
+endwhile;
+echo ("
+</div>
+<div style='text-align:center;padding-top:30px;'>");
+if (empty($_GET['cblock'])) $cblock = 1;
+else $cblock = $_GET['cblock'];
+$blocksize = 5;
+$pblock = $cblock - 1;
+$nblock = $cblock + 1;
+$startpage = ($cblock - 1) * $blocksize + 1;
+$pstartpage = $startpage - 1;
+$nstartpage = $startpage + $blocksize;
+if ($pblock > 0) echo ("[<a href=content.php?board=$board&id=$id&cblock=$pblock&cpage=$pstartpage>이전블록</a>] ");
+$i = $startpage;
+while ($i < $nstartpage):
+		if ($i > $totalpage) break;
+		echo ("[<a href=content.php?board=$board&id=$id&cblock=$cblock&cpage=$i>$i</a>]");
+		$i = $i + 1;
+endwhile;
+if ($nstartpage <= $totalpage) echo ("[<a href=content.php?board=$board&id=$id&cblock=$nblock&cpage=$nstartpage>다음블록</a>] ");
+
+echo("
 		</div>
 	</div>
 </div></body>");
