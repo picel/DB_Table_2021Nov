@@ -232,7 +232,7 @@ while ($counter < $pagesize):
     }
     $result2 = mysqli_query($con2, "select * from $board where id=$id2");
     $total2 = mysqli_num_rows($result2);
-		if ($id2 == $id) echo ("<div style='padding:10px; border-bottom:1px solid lightgray; background-color:#E4F7BA'>");
+		if ($id2 == $id) echo ("<div style='padding:15px; border-bottom:1px solid lightgray; background-color:#E4F7BA'>");
 		else echo ("<div class='inline' style='padding:15px; border-bottom:1px solid lightgray;'>");
     echo ("
 	  <div class='inlineDiv' style='width:70px; padding-left:10px;'>$id2</div>
