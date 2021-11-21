@@ -103,6 +103,16 @@ echo ("<style type=\"text/css\">
 	}
 </style>
 <script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
+<script  src='http://code.jquery.com/jquery-latest.min.js'></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+		$('.inline').hover(function() {
+			$(this).css('background-color','#E4F7BA');
+		}, function() {
+			$(this).css('background-color','#ffffff');
+		});
+	});
+</script>
 <body bgcolor='#668C4A'>
 <div class='outerDiv'>
 	<div class='leftDiv' style='margin-top: 15px;'>
@@ -223,7 +233,7 @@ while ($counter < $pagesize):
     $result2 = mysqli_query($con2, "select * from $board where id=$id2");
     $total2 = mysqli_num_rows($result2);
 		if ($id2 == $id) echo ("<div style='padding:10px; border-bottom:1px solid lightgray; background-color:#E4F7BA'>");
-		else echo ("<div style='margin-top:5px; padding:10px; border-bottom:1px solid lightgray;'>");
+		else echo ("<div class='inline' style='padding:15px; border-bottom:1px solid lightgray;'>");
     echo ("
 	  <div class='inlineDiv' style='width:70px; padding-left:10px;'>$id2</div>
 	  <div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id2&cpage=$cpage>$topic");

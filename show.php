@@ -73,6 +73,16 @@ button {
 }
 </style>
 <script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
+<script  src='http://code.jquery.com/jquery-latest.min.js'></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+		$('.inline').hover(function() {
+			$(this).css('background-color','#E4F7BA');
+		}, function() {
+			$(this).css('background-color','#ffffff');
+		});
+	});
+</script>
 <body bgcolor='#668C4A'>");
 $board = $_GET['board'];
 $con = mysqli_connect("localhost", "root", "kyle0908", "class");
@@ -139,7 +149,7 @@ else
         $result2 = mysqli_query($con2, "select * from $board where id=$id");
         $total2 = mysqli_num_rows($result2);
         echo ("
-		<div style='margin-top:5px; padding:10px; border-bottom:1px solid lightgray;'>
+		<div class='inline' style='padding:15px; border-bottom:1px solid lightgray;'>
 			<div class='inlineDiv' style='width:70px; padding-left:10px;'>$id</div>
 			<div class='inlineDiv' style='width:300px;'>$t<a href=content.php?board=$board&id=$id&cpage=$cpage>$topic");
       if ($total2 != 0) echo(" [$total2]");
