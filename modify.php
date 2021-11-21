@@ -24,7 +24,9 @@ $topic=mysqli_result($result,0,"topic");
 $content=mysqli_result($result,0,"content");
 $email=mysqli_result($result,0,"email");
 
-echo("<style type=\"text/css\">
+echo("
+<!DOCTYPE HTML>
+<style type=\"text/css\">
 .outerDiv {
 	width: 1100px;
 	height: 600px;
@@ -94,6 +96,13 @@ html, body {
 	}
 </style>
 <script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
+<script src='https://cdn.tiny.cloud/1/cjbns9pbqu21lwhyn0375qxa6pzdglcrvtddly0lmdsfauo9/tinymce/5/tinymce.min.js' referrerpolicy='origin'></script>
+<script>
+    tinymce.init({
+      selector: 'textarea#contents'
+    });
+</script>
+<body bgcolor='#668C4A'>
 <body bgcolor='#668C4A'>
 <div class='outerDiv'>
 <div class='leftDiv' style='margin-top: 15px;'>
@@ -122,7 +131,7 @@ echo ("
 			<div style='width:50px; display:inline-block;'>제목 </div>
 			<div style='width:120px; display:inline-block;'><input type=text name=topic size=91 value='$topic'></div>
 		</div>
-		<div style='padding:10px;'><textarea name=content rows=20 cols=102>$content</textarea></div>
+		<div style='padding:10px;'><textarea id='contents' name=content rows=20 cols=102>$content</textarea></div>
 		<div style='padding:10px;'>
 			<div style='width:50px; display:inline-block;'>암호 </div>
 			<div style='display:inline-block;'><input type=password name=passwd size=15></div>
