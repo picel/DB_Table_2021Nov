@@ -15,6 +15,7 @@ function mysqli_result($res,$row=0,$col=0)
 }
 $board = $_GET['board'];
 $id = $_GET['id'];
+$cpage = $_GET['cpage'];
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 
 mysqli_query($con, "delete from $board where id=$id");

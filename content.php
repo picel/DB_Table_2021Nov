@@ -15,6 +15,7 @@ function mysqli_result($res,$row=0,$col=0)
 }
 $id = $_GET['id'];
 $board = $_GET['board'];
+$cpage = $_GET['cpage'];
 $con = mysqli_connect("localhost","root","kyle0908", "class");
 $con2 = mysqli_connect("localhost","root","kyle0908", "reply");
 $result=mysqli_query($con, "select * from $board where id=$id");
@@ -167,15 +168,26 @@ if ($total!=0){
 		$content=mysqli_result($result2,$counter,"content");
 		$wdate=mysqli_result($result2,$counter,"wdate");
 		$num=mysqli_result($result2,$counter,"num");
+		$edit=mysqli_result($result2,$counter,"edit");
 		echo("
 		<div style='padding-top:40px;'>
 			<div style='margin-bottom:10px;'>
 				<div style='display:inline-block;'><span style='font:bold; font-size:20px;'>$writer</span></div>
-				<div style='display:inline-block; float:right;'>$wdate</div>
+				<div style='display:inline-block; float:right;'>$wdate
+		");
+
+		if ($edit == 1) {
+			echo ("(수정됨)");
+		}
+		echo("
+				</div>
 			</div>
 			<div>
 				<div style='width:650px; display:inline-block;'>$content</div>
-				<div style='float:right; display:inline-block;'><a href=cmtpass.php?board=$board&num=$num&id=$id text-align=right class='fas fa-trash'> 삭제</a></div>
+				<div style='float:right; display:inline-block;'>
+					<a href=cmtpass.php?board=$board&num=$num&id=$id&cpage=$cpage&mode=0 text-align=right class='fas fa-trash'> 삭제</a>
+					&nbsp;<a href=cmtpass.php?board=$board&num=$num&id=$id&cpage=$cpage&mode=1 text-align=right class='fas fa-edit'> 수정</a>
+				</div>
 			</div>
 		</div>
 		");
@@ -210,7 +222,6 @@ echo("
 ");
 $result = mysqli_query($con, "select * from $board order by id desc");
 $total = mysqli_num_rows($result);
-$cpage = $_GET['cpage'];
 $pagesize = 5;
 $totalpage = (int)($total / $pagesize);
 if (($total % $pagesize) != 0) $totalpage = $totalpage + 1;

@@ -16,6 +16,7 @@ function mysqli_result($res,$row=0,$col=0)
 $board = $_GET['board'];
 $num = $_GET['num'];
 $id = $_GET['id'];
+$cpage = $_GET['cpage'];
 $pass = $_POST['pass'];
 $con = mysqli_connect("localhost","root","kyle0908", "reply");
 $result=mysqli_query($con, "select passwd from $board where num=$num");
@@ -34,7 +35,7 @@ if ($pass != $passwd) {
     	window.alert('댓글이 삭제 되었습니다.');
     	</script>
     ");
-    echo("<meta http-equiv='Refresh' content='0; url=content.php?board=$board&id=$id'>");
+    echo("<meta http-equiv='Refresh' content='0; url=content.php?board=$board&id=$id&cpage=$cpage'>");
 }
 
 mysqli_close($con);
