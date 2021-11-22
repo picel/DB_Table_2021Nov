@@ -120,7 +120,7 @@ if (!$total)
 {
     echo ("<div style='text-align:center; padding:20px; height:343px;'>아직 등록된 글이 없습니다.</div>
     <div style='text-align:right; width:120px; display:inline; width:500px; float:right; margin-right:69px;'>
-      <a href=input.php?board=$board text-align=right>[쓰기]</a>
+      <a href=input.php?board=$board text-align=right class='fas fa-pen'> 글쓰기</a>
     </div>");
 }
 else
