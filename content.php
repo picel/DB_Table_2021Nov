@@ -143,7 +143,7 @@ echo ("
 		");
 
 if ($filename != null){
-	echo("<div style='padding:25px;'>첨부파일 : <a href=./pds/$filename class='fas fa-file'> FILE</a> [$disp_size]</div>");
+	echo("<div style='padding:25px;'>첨부파일 : <a href=./pds/$filename class='fas fa-file'> $filename</a> [$disp_size]</div>");
 }
 
 echo ("
