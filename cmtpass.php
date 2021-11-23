@@ -5,7 +5,7 @@ $id = $_GET['id'];
 $cpage = $_GET['cpage'];
 if ($_GET['mode'] == 0){
   echo ("
-     <form method=post action=cmtpass2.php?board=$board&num=$num&id=$id&cpage=$cpage>
+     <form method=post action=cmtdelete.php?board=$board&num=$num&id=$id&cpage=$cpage>
      <table border=0 width=400 align=center>
      <tr><td align=center>암호를 입력하십시오</td></tr>
      <tr><td align=center>암호: <input type=password size=15 name='pass'>
