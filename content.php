@@ -160,7 +160,7 @@ echo ("
 		");
 
 if ($total!=0){
-	echo("<div class='container' style='padding-top:0px;'>");
+	echo("<div class='container'>");
 	$counter = 0;
 	while($counter<$total):
 		$writer=mysqli_result($result2,$counter,"writer");
@@ -170,7 +170,7 @@ if ($total!=0){
 		$num=mysqli_result($result2,$counter,"num");
 		$edit=mysqli_result($result2,$counter,"edit");
 		echo("
-		<div style='padding-top:40px;'>
+		<div style='padding:15px;'>
 			<div style='margin-bottom:10px;'>
 				<div style='display:inline-block;'><span style='font:bold; font-size:20px;'>$writer</span></div>
 				<div style='display:inline-block; float:right;'>$wdate
@@ -243,7 +243,7 @@ while ($counter < $pagesize):
     }
     $result2 = mysqli_query($con2, "select * from $board where id=$id2");
     $total2 = mysqli_num_rows($result2);
-		if ($id2 == $id) echo ("<div style='padding:15px; border-bottom:1px solid lightgray; background-color:#E4F7BA'>");
+		if ($id2 == $id) echo ("<div style='padding:15px; border-bottom:1px solid lightgray; background-color:#E4F7BA;'>");
 		else echo ("<div class='inline' style='padding:15px; border-bottom:1px solid lightgray;'>");
     echo ("
 	  <div class='inlineDiv' style='width:70px; padding-left:10px;'>$id2</div>

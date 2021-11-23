@@ -14,12 +14,12 @@ function mysqli_result($res,$row=0,$col=0)
 	return false;
 }
 $board = $_GET['board'];
-$num = $_GET['num'];
+$cmtnum = $_GET['num'];
 $id = $_GET['id'];
 $cpage = $_GET['cpage'];
 $pass = $_POST['pass'];
 $con = mysqli_connect("localhost","root","kyle0908", "reply");
-$result=mysqli_query($con, "select * from $board where num=$num");
+$result=mysqli_query($con, "select * from $board where num=$cmtnum");
 $passwd=mysqli_result($result,0,"passwd");
 $cmtname=mysqli_result($result,0,"writer");
 $cmtemail=mysqli_result($result,0,"email");
@@ -174,6 +174,54 @@ else {
       <div style='margin:10px; float:right;'><a href=reply.php?board=$board&id=$id class='fas fa-reply'> 답변</a></div>
       <div style='margin:10px; float:right;'><a href=show.php?board=$board class='fas fa-list'> 목록</a></div>
       </div>
+			");
+
+			if ($total!=0){
+				echo("<div class='container'>");
+				$counter = 0;
+				while($counter<$total):
+					$writer=mysqli_result($result2,$counter,"writer");
+					$email=mysqli_result($result2,$counter,"email");
+					$content=mysqli_result($result2,$counter,"content");
+					$wdate=mysqli_result($result2,$counter,"wdate");
+					$num=mysqli_result($result2,$counter,"num");
+					$edit=mysqli_result($result2,$counter,"edit");
+					if ($cmtnum == $num){
+						echo("
+						<div style='padding:10px; background-color:#E4F7BA;'>
+						");
+					}
+					else{
+						echo("
+							<div style='padding:10px;'>
+						");
+					}
+					echo("
+							<div style='margin-bottom:10px;'>
+								<div style='display:inline-block;'><span style='font:bold; font-size:20px;'>$writer</span></div>
+								<div style='display:inline-block; float:right;'>$wdate
+						");
+
+						if ($edit == 1) {
+							echo ("(수정됨)");
+						}
+						echo("
+								</div>
+							</div>
+							<div>
+								<div style='width:550px; display:inline-block;'>$content</div>
+								<div style='float:right; display:inline-block;'>
+									<a href=cmtpass.php?board=$board&num=$num&id=$id&cpage=$cpage&mode=0 text-align=right class='fas fa-trash'> 삭제</a>
+									&nbsp;<a href=cmtpass.php?board=$board&num=$num&id=$id&cpage=$cpage&mode=1 text-align=right class='fas fa-edit'> 수정</a>
+								</div>
+							</div>
+						</div>
+					");
+					$counter++;
+				endwhile;
+				echo("</div>");
+			}
+			echo("
       <div class='container'>
         <form method=post action=cmtmodify2.php?board=$board&id=$id&cpage=$cpage&num=$num>
           <div style='padding:10px;'>
