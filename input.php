@@ -79,6 +79,10 @@ input[type='file'] {
       selector: 'textarea#contents'
     });
 </script>
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+<script>
+	function onSubmit(token){document.getElementById('post').submit();}
+</script>
 <body bgcolor='#668C4A'>
 <div class='outerDiv'>
 <div class='leftDiv' style='margin-top: 15px;'>
@@ -96,7 +100,7 @@ echo ("
 		<div style='border-bottom:3px solid #011640;'>
 			<h1>$board</h1>
 		</div>
-		<form method=post action=process.php?board=$board  enctype='multipart/form-data'>
+		<form id='post' method=post action=process.php?board=$board  enctype='multipart/form-data'>
 		<div style='padding:10px;'>
 			<div style='width:50px; display:inline-block;'>이름</div>
 			<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
@@ -118,7 +122,7 @@ echo ("
 		</div>
 		<div>
 			<div style='width:120px; display:inline-block;'></div>
-			<div style='text-align:center; width:500px; display:inline-block;'><button class='fas fa-pen' type='submit'> 글쓰기</button></div>
+			<div style='text-align:center; width:500px; display:inline-block;'><button class='g-recaptcha form-field' data-sitekey='6LekaVcdAAAAABPYwLTb_tfkxFdjSs-j2YCi-M7s' data-callback='onSubmit'><i class='fas fa-pen'></i> 글쓰기</button></div>
 			<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
 		</div>
 		</form>

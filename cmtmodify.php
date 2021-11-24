@@ -13,6 +13,7 @@ function mysqli_result($res,$row=0,$col=0)
 	}
 	return false;
 }
+$secret = '6LekaVcdAAAAAETHFgJqvk_GZTUSYjOEofrBGFb3';
 $board = $_GET['board'];
 $cmtnum = $_GET['num'];
 $id = $_GET['id'];
@@ -32,7 +33,10 @@ if ($pass != $passwd) {
 		</script>");
 	exit;
 }
-else {
+if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+{
+	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response'] . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+	if ($verifyResponse.success == true) {
   $con = mysqli_connect("localhost","root","kyle0908", "class");
   $con2 = mysqli_connect("localhost","root","kyle0908", "reply");
   $result=mysqli_query($con, "select * from $board where id=$id");
@@ -308,8 +312,16 @@ else {
       </div>
     </div>
   </div></body>");
-}
 
 mysqli_close($con);
-
+}
+	else {
+		echo("
+			<script>
+			window.alert('자동입력 방지를 통과하지 못했습니다.')
+			history.go(-1)
+			</script>
+		");
+	}
+}
 ?>

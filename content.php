@@ -105,6 +105,10 @@ echo ("<style type=\"text/css\">
 </style>
 <script src='https://kit.fontawesome.com/ce77ac93cc.js' crossorigin='anonymous'></script>
 <script  src='http://code.jquery.com/jquery-latest.min.js'></script>
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+<script>
+	function onSubmit(token){document.getElementById('comment').submit();}
+</script>
 <script type='text/javascript'>
 $(document).ready(function() {
 		$('.inline').hover(function() {
@@ -198,7 +202,7 @@ if ($total!=0){
 
 echo("
 		<div class='container'>
-			<form method=post action=comment.php?board=$board&id=$id>
+			<form id='comment' method=post action=comment.php?board=$board&id=$id&cpage=$cpage  enctype='multipart/form-data'>
 				<div style='padding:10px;'>
 					<div style='width:50px; display:inline-block;'>이름</div>
 					<div style='width:259px; display:inline-block;'><input type=text name=writer size=30></div>
@@ -212,7 +216,7 @@ echo("
 				</div>
 				<div>
 					<div style='width:120px; display:inline-block;'></div>
-					<div style='text-align:center; width:500px; display:inline-block;'><button class='fas fa-pen' type='submit'> 입력</button></div>
+					<div style='text-align:center; width:500px; display:inline-block;'><button class='g-recaptcha form-field' data-sitekey='6LekaVcdAAAAABPYwLTb_tfkxFdjSs-j2YCi-M7s' data-callback='onSubmit'><i class='fas fa-pen'></i> 입력</button></div>
 					<div style='text-align:right; width:120px; display:inline;'><button class='fas fa-eraser' type=reset> 지우기</button></div>
 				</div>
 			</form>

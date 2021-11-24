@@ -13,6 +13,7 @@ function mysqli_result($res,$row=0,$col=0)
 	}
 	return false;
 }
+$secret = '6LekaVcdAAAAAETHFgJqvk_GZTUSYjOEofrBGFb3';
 $board = $_GET['board'];
 $num = $_GET['num'];
 $id = $_GET['id'];
@@ -28,16 +29,28 @@ if ($pass != $passwd) {
 		history.go(-1);
 		</script>");
 	exit;
-} else {
-    mysqli_query($con, "delete from $board where num=$num");
+}
+
+if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+	{
+	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response'] . '&remoteip=' . $_SERVER['REMOTE_ADDR']);
+	if ($verifyResponse.success == true) {
+		mysqli_query($con, "delete from $board where num=$num");
     echo("
     	<script>
     	window.alert('댓글이 삭제 되었습니다.');
     	</script>
     ");
     echo("<meta http-equiv='Refresh' content='0; url=content.php?board=$board&id=$id&cpage=$cpage'>");
+		mysqli_close($con);
+			}
+	else {
+		echo("
+			<script>
+			window.alert('자동입력 방지를 통과하지 못했습니다.')
+			history.go(-1)
+			</script>
+		");
+	}
 }
-
-mysqli_close($con);
-
 ?>
